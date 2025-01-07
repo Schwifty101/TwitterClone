@@ -1,4 +1,4 @@
-import Users from "../models/user";
+import Users from "../models/Users.js";
 
 export const getUser = async (req, res) => {
     try {
@@ -10,7 +10,7 @@ export const getUser = async (req, res) => {
     }
 };
 
-export const getUserfriends = async (req, res) => {
+export const getUserFriends = async (req, res) => {
     try {
         const { id } = req.params;
         const user = await Users.find({ _id: { $ne: id } });
@@ -19,7 +19,7 @@ export const getUserfriends = async (req, res) => {
         );
 
         const formattedFriends = friends.map(
-            ({_id, firstname, lastname, occupation, location, picturePatch }) => {
+            ({ _id, firstname, lastname, occupation, location, picturePatch }) => {
                 return { _id, firstname, lastname, occupation, location, picturePatch };
             }
         );
@@ -53,9 +53,9 @@ export const addRemoveFriends = async (req, res) => {
         const friends = await Promise.all(
             user.friends.map(friend => Users.findById(friend._id))
         );
-        
+
         const formattedFriends = friends.map(
-            ({_id, firstname, lastname, occupation, location, picturePatch }) => {
+            ({ _id, firstname, lastname, occupation, location, picturePatch }) => {
                 return { _id, firstname, lastname, occupation, location, picturePatch };
             }
         );

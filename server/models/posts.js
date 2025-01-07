@@ -20,6 +20,11 @@ export default mongoose.model("Post", new mongoose.Schema({
     likes: {
         type: Map,
         of: Boolean,
+        default: {},
     },
+    comments: {
+        type: Array,
+        default: [],
+    }
 }, { timestamps: true }
 ));

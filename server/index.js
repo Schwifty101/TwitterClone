@@ -11,7 +11,8 @@ import { fileURLToPath } from 'url';
 
 // Routes
 import authRoutes from './routes/auth.js';
-import { register } from './controllers/auth.js';
+import userRoutes from './routes/users.js';
+import { register } from './controllers/auth.js'; // For file upload
 
 // Configurations
 const __filename = fileURLToPath(import.meta.url);
@@ -44,6 +45,7 @@ app.post("auth/register", upload.single('picture'), register);
 
 // Routes
 app.use('/auth', authRoutes);
+app.use('/users', userRoutes);
 
 // Mongoose Connection
 const PORT = process.env.PORT || 5000;

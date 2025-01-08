@@ -17,6 +17,11 @@ import { register } from './controllers/auth.js'; // For file upload
 import { createPost } from './controllers/posts.js'; // For Creating Post
 import { verifyToken } from './middleware/auth.js';
 
+// Models
+import Users from './models/Users.js';
+import Posts from './models/Posts.js';
+import { users, posts } from './data/index.js';
+
 // Configurations
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -52,12 +57,26 @@ app.use('/auth', authRoutes);
 app.use('/posts', postRoutes);
 app.use('/users', userRoutes);
 
+const clearDatabase = async () => {
+    try {
+        await Users.deleteMany({});
+        await Posts.deleteMany({});
+        console.log('All users and posts have been deleted');
+    } catch (error) {
+        console.error('Error deleting users and posts:', error);
+    }
+};
+
+// clearDatabase();
+
 // Mongoose Connection
 const PORT = process.env.PORT || 5000;
 mongoose.connect(process.env.MONGO_URL)
     .then(() => {
         app.listen(PORT, () => {
             console.log(`Server is running on port: ${PORT}`);
+            // Users.insertMany(users);
+            // Posts.insertMany(posts);
         });
     }).catch((error) => {
         console.log(error.message);

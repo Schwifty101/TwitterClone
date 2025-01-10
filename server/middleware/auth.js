@@ -12,7 +12,7 @@ export const verifyToken = (req, res, next) => {
             token = token.slice(7, token.length).trimLeft();
         }
 
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const decoded = jwt.verify(token, process.env.SECRET_KEY);
         req.user = decoded;
         
     } catch (error) {

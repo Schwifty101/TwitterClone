@@ -8,8 +8,8 @@ export const createPost = async (req, res) => {
         const user = await Users.findbyId(userId);
         const newPost = new Posts({
             userId,
-            firstname: user.firstname,
-            lastname: user.lastname,
+            firstName: user.firstName,
+            lastName: user.lastName,
             location: user.location,
             description,
             picturePatch,
@@ -66,11 +66,11 @@ export const likePost = async (req, res) => {
 
         // Toggle like
         const hasLiked = post.likes.get(userId);
-        if(hasLiked) post.likes.delete(userId);
+        if (hasLiked) post.likes.delete(userId);
         else post.likes.set(userId, true);
 
         // Save Post
-       await post.save();
+        await post.save();
 
         res.status(200).json(post);
     } catch (error) {

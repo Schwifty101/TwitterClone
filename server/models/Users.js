@@ -2,13 +2,13 @@ import mongoose from "mongoose";
 
 export default mongoose.model("User", new mongoose.Schema(
     {
-        firstname: {
+        firstName: {
             type: String,
             required: true,
             min: 2,
             max: 50
         },
-        lastname: {
+        lastName: {
             type: String,
             required: true,
             min: 2,

@@ -1,15 +1,15 @@
-import mongoose from "mongoose";    
+import mongoose from "mongoose";
 
 export default mongoose.model("Post", new mongoose.Schema({
     userId: {
         type: String,
         required: true
     },
-    firstname: {
+    firstName: {
         type: String,
         required: true
     },
-    lastname: {
+    lastName: {
         type: String,
         required: true
     },

@@ -5,6 +5,7 @@ const initialState = {
     user: null,
     token: null,
     posts: [],
+    isAuth: false
 };
 
 export const authSlice = createSlice({
@@ -17,10 +18,12 @@ export const authSlice = createSlice({
         setLogin: (state, action) => {
             state.user = action.payload.user;
             state.token = action.payload.token;
+            state.isAuth = true;
         },
         setLogout: (state) => {
             state.user = null;
             state.token = null;
+            state.isAuth = false;
         },
         setFriends: (state, action) => {
             if (state.user) {
